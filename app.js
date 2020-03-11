@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000 // = process.env
+const moneyCalculation = require('./moneyCalculation')
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/expense_tracker', {
   useNewUrlParser: true,
@@ -27,9 +28,9 @@ app.get('/', (req, res) => {
   Record.find()
     .lean()
     .exec((err, records) => {
-      console.log(records)
+      const totalAmount = moneyCalculation(records)
       if (err) return console.error(err)
-      return res.render('index', { records })
+      return res.render('index', { records, totalAmount })
     })
 })
 
