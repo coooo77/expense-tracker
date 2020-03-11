@@ -23,6 +23,26 @@ const recordSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  home: {
+    type: Boolean,
+    default: false
+  },
+  transport: {
+    type: Boolean,
+    default: false
+  },
+  entertain: {
+    type: Boolean,
+    default: false
+  },
+  food: {
+    type: Boolean,
+    default: false
+  },
+  other: {
+    type: Boolean,
+    default: false
   }
 })
 

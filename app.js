@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
   Record.find()
     .lean()
     .exec((err, records) => {
+      console.log(records)
       if (err) return console.error(err)
       return res.render('index', { records })
     })

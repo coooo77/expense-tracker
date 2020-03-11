@@ -24,7 +24,11 @@
               <div class="row w-100 d-flex justify-content-between">
                 <div class="col-9 d-flex justify-content-between border border-danger">
                   <div id="item detail" class="d-flex justify-content-between align-items-center">
-                    <i class="fas fa-home fa-3x mr-2"></i>
+                    {{#if this.home}}<i class="fas fa-home fa-3x mr-2"></i>{{/if}}
+                    {{#if this.transport}}<i class="fas fa-shuttle-van fa-3x mr-2"></i>{{/if}}
+                    {{#if this.entertain}}<i class="fas fa-grin-beam fa-3x mr-2"></i>{{/if}}
+                    {{#if this.food}}<i class="fas fa-utensils fa-3x mr-2"></i>{{/if}}
+                    {{#if this.other}}<i class="fas fa-pen fa-3x mr-2"></i>{{/if}}
                     <div>
                       <h4 class="mb-0">{{{this.name}}}</h4>
                       <h6>{{{this.date}}}</h6>

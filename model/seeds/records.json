@@ -2,27 +2,27 @@
   "records": [
     {
       "name": "沙發椅",
-      "category": "家居物業",
+      "category": "home",
       "amount": 10000
     },
     {
       "name": "機車檢修",
-      "category": "交通出行",
+      "category": "transport",
       "amount": 1000
     },
     {
       "name": "惡靈古堡3重製板",
-      "category": "休閒娛樂",
+      "category": "entertain",
       "amount": 1800
     },
     {
       "name": "蟹堡王美味蟹堡",
-      "category": "餐飲食品",
+      "category": "food",
       "amount": 300
     },
     {
       "name": "牙科檢查",
-      "category": "其他",
+      "category": "other",
       "amount": 200
     }
   ]
