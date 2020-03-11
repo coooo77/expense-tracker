@@ -23,6 +23,30 @@ app.get('/', (req, res) => {
   res.send('hello world')
 })
 
+app.get('/records', (req, res) => {
+  res.send('顯示所有record資料')
+})
+
+app.get('/records/new', (req, res) => {
+  res.send('新增record頁面')
+})
+
+app.post('/records', (req, res) => {
+  res.send('新增record')
+})
+
+app.get('/records/:id/edit', (req, res) => {
+  res.send('修改record頁面')
+})
+
+app.post('/records/:id/edit', (req, res) => {
+  res.send('修改record')
+})
+
+app.post('/records/:id/delete', (req, res) => {
+  res.send('刪除record')
+})
+
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`)
 })
