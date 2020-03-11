@@ -24,7 +24,12 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-  res.render('index')
+  Record.find()
+    .lean()
+    .exec((err, records) => {
+      if (err) return console.error(err)
+      return res.render('index', { records })
+    })
 })
 
 app.get('/records', (req, res) => {
