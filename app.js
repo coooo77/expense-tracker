@@ -1,4 +1,5 @@
 const express = require('express')
+const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000 // = process.env
 const mongoose = require('mongoose')
@@ -19,8 +20,11 @@ db.once('open', () => {
 const Record = require('./model/record')
 const User = require('./model/user')
 
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.render('index')
 })
 
 app.get('/records', (req, res) => {
