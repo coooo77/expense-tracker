@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const app = express()
+const methodOverride = require('method-override')
 const port = 3000 // = process.env
 const moneyCalculation = require('./moneyCalculation')
 const mongoose = require('mongoose')
@@ -25,6 +26,7 @@ const User = require('./model/user')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
   Record.find()
@@ -63,8 +65,14 @@ app.post('/records/:id/edit', (req, res) => {
   res.send('修改record')
 })
 
-app.post('/records/:id/delete', (req, res) => {
-  res.send('刪除record')
+app.delete('/records/:id/delete', (req, res) => {
+  Record.findById(req.params.id, (err, record) => {
+    if (err) return console.error(err)
+    record.remove(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')
+    })
+  })
 })
 
 app.listen(port, () => {
