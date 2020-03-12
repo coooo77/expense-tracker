@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000 // = process.env
 const moneyCalculation = require('./moneyCalculation')
@@ -23,6 +24,7 @@ const User = require('./model/user')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Record.find()
@@ -39,11 +41,18 @@ app.get('/records', (req, res) => {
 })
 
 app.get('/records/new', (req, res) => {
-  res.send('新增record頁面')
+  console.log(req.body)
+  res.render('new')
 })
 
 app.post('/records', (req, res) => {
-  res.send('新增record')
+  console.log(req.body)
+  const record = new Record(req.body)
+  record[req.body.category] = true
+  record.save(err => {
+    if (err) return console.log(err)
+    return res.redirect('/')
+  })
 })
 
 app.get('/records/:id/edit', (req, res) => {
