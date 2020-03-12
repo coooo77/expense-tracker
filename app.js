@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.use('/', require('./routes/home'))
+app.use('/users', require('./routes/user'))
 app.use('/records', require('./routes/record'))
 
 app.listen(port, () => {
