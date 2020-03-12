@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const moment = require('moment')
 
 const recordSchema = new Schema({
   name: {
@@ -21,8 +22,8 @@ const recordSchema = new Schema({
     required: true
   },
   date: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: moment().format('YYYY-MM-DD')
   },
   home: {
     type: Boolean,
