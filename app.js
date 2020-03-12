@@ -29,17 +29,20 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
-  Record.find()
+  return res.redirect('/records')
+})
+
+app.get('/records', (req, res) => {
+  const type = req.query.type || null
+  Record.find({
+    [type]: type ? true : null
+  })
     .lean()
     .exec((err, records) => {
       const totalAmount = moneyCalculation(records)
       if (err) return console.error(err)
       return res.render('index', { records, totalAmount })
     })
-})
-
-app.get('/records', (req, res) => {
-  res.send('顯示所有record資料')
 })
 
 app.get('/records/new', (req, res) => {
