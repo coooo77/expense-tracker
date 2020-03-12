@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-10 col-12 mx-auto mt-5">
+
+    <div class="form-group row">
+      <label for="colFormLabelLg" class="col-sm-2 col-form-label ">必填欄位*：</label>
+      <label for="colFormLabelLg" class="col-sm-10 col-form-label col-form-label-lg text-center">請修改你的支出</label>
+    </div>
+
+    <form action="/records/{{this._id}}/edit?_method=PUT" method="POST">
+
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label col-form-label-lg">名稱*：</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="項目名稱"
+            value="{{this.name}}">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="date" class="col-sm-2 col-form-label col-form-label-lg">日期*：</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control form-control-lg" id="date" name="date" value="{{this.date}}">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="category" class="col-sm-2 col-form-label col-form-label-lg">類別*：</label>
+        <div class="col-sm-10">
+          <select class="custom-select" style="height:50px;font-size:20px" id="category" name="category"
+            value="{{this.category}}">
+            {{!-- <option selected>Select</option> --}}
+            <option value="home" {{#if this.home}}selected{{/if}}>家居物業</option>
+            <option value="transport" {{#if this.transport}}selected{{/if}}>交通出行</option>
+            <option value="entertain" {{#if this.entertain}}selected{{/if}}>休閒娛樂</option>
+            <option value="food" {{#if this.food}}selected{{/if}}>餐飲食品</option>
+            <option value="other" {{#if this.other}}selected{{/if}}>其他</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="amount" class="col-sm-2 col-form-label col-form-label-lg">金額*：</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control form-control-lg" id="amount" name="amount" placeholder="項目花費"
+            value="{{this.amount}}">
+        </div>
+      </div>
+
+
+      <div class="form-group row d-flex justify-content-end">
+        <div class="col-10">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">新增支出</button>
+        </div>
+      </div>
+
+    </form>
+
+    {{#if result}}
+      <div class="alert alert-info mt-3" role="alert">
+        <span class="mr-2">資料填寫不完整！</span>
+      </div>
+    {{/if}}
+
+  </div>
+</div>

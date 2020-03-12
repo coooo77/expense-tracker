@@ -43,12 +43,10 @@ app.get('/records', (req, res) => {
 })
 
 app.get('/records/new', (req, res) => {
-  console.log(req.body)
   res.render('new')
 })
 
 app.post('/records', (req, res) => {
-  console.log(req.body)
   const record = new Record(req.body)
   record[req.body.category] = true
   record.save(err => {
@@ -58,11 +56,23 @@ app.post('/records', (req, res) => {
 })
 
 app.get('/records/:id/edit', (req, res) => {
-  res.send('修改record頁面')
+  Record.findById(req.params.id, (err, record) => {
+    if (err) return console.error(err)
+    return res.render('edit', record)
+  })
 })
 
-app.post('/records/:id/edit', (req, res) => {
-  res.send('修改record')
+app.put('/records/:id/edit', (req, res) => {
+  Record.findById(req.params.id, (err, record) => {
+    if (err) return console.error(err)
+    record[record.category] = false
+    record[req.body.category] = true
+    Object.assign(record, req.body)
+    record.save(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')
+    })
+  })
 })
 
 app.delete('/records/:id/delete', (req, res) => {
