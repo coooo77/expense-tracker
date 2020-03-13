@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
-const User = require('../models/user')
 const moneyCalculation = require('../moneyCalculation')
 const { authenticated } = require('../config/auth')
 
@@ -9,6 +8,7 @@ const { authenticated } = require('../config/auth')
 router.get('/', authenticated, (req, res) => {
   const type = req.query.type || null
   Record.find({
+    userId: req.user._id,
     [type]: type ? true : null
   })
     .lean()
@@ -26,7 +26,9 @@ router.get('/new', authenticated, (req, res) => {
 
 // 新增records
 router.post('/', authenticated, (req, res) => {
-  const record = new Record(req.body)
+  const data = req.body
+  data.userId = req.user._id
+  const record = new Record(data)
   record[req.body.category] = true
   record.save(err => {
     if (err) return console.log(err)
@@ -36,7 +38,10 @@ router.post('/', authenticated, (req, res) => {
 
 // 編輯records頁面
 router.get('/:id/edit', authenticated, (req, res) => {
-  Record.findById(req.params.id, (err, record) => {
+  Record.findOne({
+    _id: req.params.id,
+    userId: req.user._id,
+  }, (err, record) => {
     if (err) return console.error(err)
     return res.render('edit', record)
   })
@@ -44,7 +49,10 @@ router.get('/:id/edit', authenticated, (req, res) => {
 
 // 編輯records
 router.put('/:id/edit', authenticated, (req, res) => {
-  Record.findById(req.params.id, (err, record) => {
+  Record.findOne({
+    _id: req.params.id,
+    userId: req.user._id,
+  }, (err, record) => {
     if (err) return console.error(err)
     record[record.category] = false
     record[req.body.category] = true
@@ -58,7 +66,10 @@ router.put('/:id/edit', authenticated, (req, res) => {
 
 // 刪除records
 router.delete('/:id/delete', authenticated, (req, res) => {
-  Record.findById(req.params.id, (err, record) => {
+  Record.findOne({
+    _id: req.params.id,
+    userId: req.user._id,
+  }, (err, record) => {
     if (err) return console.error(err)
     record.remove(err => {
       if (err) return console.error(err)
