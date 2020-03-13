@@ -3,6 +3,7 @@ const Record = require('../record')
 const User = require('../user')
 const recordList = require('./records')
 const userList = require('./users')
+const bcrypt = require('bcryptjs')
 
 mongoose.connect('mongodb://localhost/expense_tracker', {
   useNewUrlParser: true,
@@ -22,7 +23,13 @@ db.once('open', () => {
   const users = []
   for (let i = 0; i < userList.users.length; i++) {
     const newUser = new User(userList.users[i])
-    newUser.save()
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err
+        newUser.password = hash
+        newUser.save()
+      })
+    })
     users.push(newUser)
   }
 
