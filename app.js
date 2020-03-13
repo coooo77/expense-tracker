@@ -1,8 +1,11 @@
 const express = require('express')
+const app = express()
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-const app = express()
 const methodOverride = require('method-override')
 const session = require('express-session')
 const port = 3000 // = process.env
@@ -43,6 +46,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/', require('./routes/home'))
+app.use('/auth', require('./routes/auths'))
 app.use('/users', require('./routes/user'))
 app.use('/records', require('./routes/record'))
 
