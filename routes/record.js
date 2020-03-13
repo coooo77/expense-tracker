@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const Record = require('../model/record')
-const User = require('../model/user')
+const Record = require('../models/record')
+const User = require('../models/user')
 const moneyCalculation = require('../moneyCalculation')
 
 router.get('/', (req, res) => {
