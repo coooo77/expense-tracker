@@ -3,8 +3,10 @@ const router = express.Router()
 const Record = require('../models/record')
 const User = require('../models/user')
 const moneyCalculation = require('../moneyCalculation')
+const { authenticated } = require('../config/auth')
 
-router.get('/', (req, res) => {
+// 得到所有records或篩選出特定種類records
+router.get('/', authenticated, (req, res) => {
   const type = req.query.type || null
   Record.find({
     [type]: type ? true : null
@@ -17,11 +19,13 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/new', (req, res) => {
+// 新增records頁面
+router.get('/new', authenticated, (req, res) => {
   res.render('new')
 })
 
-router.post('/', (req, res) => {
+// 新增records
+router.post('/', authenticated, (req, res) => {
   const record = new Record(req.body)
   record[req.body.category] = true
   record.save(err => {
@@ -30,14 +34,16 @@ router.post('/', (req, res) => {
   })
 })
 
-router.get('/:id/edit', (req, res) => {
+// 編輯records頁面
+router.get('/:id/edit', authenticated, (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) return console.error(err)
     return res.render('edit', record)
   })
 })
 
-router.put('/:id/edit', (req, res) => {
+// 編輯records
+router.put('/:id/edit', authenticated, (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) return console.error(err)
     record[record.category] = false
@@ -50,7 +56,8 @@ router.put('/:id/edit', (req, res) => {
   })
 })
 
-router.delete('/:id/delete', (req, res) => {
+// 刪除records
+router.delete('/:id/delete', authenticated, (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) return console.error(err)
     record.remove(err => {
