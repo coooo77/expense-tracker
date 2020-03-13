@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const flash = require('connect-flash')
 const port = 3000 // = process.env
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/expense_tracker', {
@@ -37,11 +38,14 @@ app.use(methodOverride('_method'))
 app.use(passport.initialize())
 app.use(passport.session())
 require('./config/passport')(passport)
+app.use(flash())
 
 app.use((req, res, next) => {
   console.log('req.user', req.user)
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
