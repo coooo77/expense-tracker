@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const app = express()
 const methodOverride = require('method-override')
+const session = require('express-session')
 const port = 3000 // = process.env
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/expense_tracker', {
@@ -18,6 +19,12 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
 })
+
+app.use(session({
+  secret: 'your secret key',
+  resave: false,
+  saveUninitialized: true,
+}))
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
