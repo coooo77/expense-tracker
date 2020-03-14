@@ -5,17 +5,35 @@ const moneyCalculation = require('../moneyCalculation')
 const { authenticated } = require('../config/auth')
 
 // 得到所有records或篩選出特定種類records
+// 設計按鈕按照時間或金錢大小排列，同一個按鈕點兩次會有升降冪功能
+// 邏輯：有正面，就弄反面的連結
 router.get('/', authenticated, (req, res) => {
   const type = req.query.type || null
+  const field = req.query.field || "date"
+  const order = req.query.order || "asc"
+
+  let nextOrderForDate = "desc"
+  if (field === "date" && order === "desc") {
+    nextOrderForDate = "asc"
+  }
+
+  let nextOrderForAmount = "asc"
+  if (field === "amount" && order === "asc") {
+    nextOrderForAmount = "desc"
+  }
+  const sort = { [field]: order }
+
+
   Record.find({
     userId: req.user._id,
     [type]: type ? true : null
   })
+    .sort({ [field]: order })
     .lean()
     .exec((err, records) => {
       const totalAmount = moneyCalculation(records)
       if (err) return console.error(err)
-      return res.render('index', { records, totalAmount })
+      return res.render('index', { records, totalAmount, type, nextOrderForDate, nextOrderForAmount })
     })
 })
 
