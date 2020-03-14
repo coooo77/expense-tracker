@@ -24,6 +24,56 @@
       "name": "牙科檢查",
       "category": "other",
       "amount": 200
+    },
+    {
+      "name": "掃地機器人",
+      "category": "home",
+      "amount": 9090
+    },
+    {
+      "name": "悠遊卡儲值",
+      "category": "transport",
+      "amount": 1000
+    },
+    {
+      "name": "太空戰士7重製板",
+      "category": "entertain",
+      "amount": 2000
+    },
+    {
+      "name": "晚餐聚會",
+      "category": "food",
+      "amount": 360
+    },
+    {
+      "name": "孝親費",
+      "category": "other",
+      "amount": 20000
+    },
+    {
+      "name": "大門維修",
+      "category": "home",
+      "amount": 5000
+    },
+    {
+      "name": "機車更換機油",
+      "category": "transport",
+      "amount": 300
+    },
+    {
+      "name": "日月潭旅遊",
+      "category": "entertain",
+      "amount": 4000
+    },
+    {
+      "name": "早餐",
+      "category": "food",
+      "amount": 300
+    },
+    {
+      "name": "贊助donate",
+      "category": "other",
+      "amount": 200
     }
   ]
 }

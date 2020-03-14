@@ -13,6 +13,7 @@ router.get('/', authenticated, (req, res) => {
   })
     .lean()
     .exec((err, records) => {
+      console.log('records', records)
       const totalAmount = moneyCalculation(records)
       if (err) return console.error(err)
       return res.render('index', { records, totalAmount })
@@ -27,6 +28,7 @@ router.get('/new', authenticated, (req, res) => {
 // 新增records
 router.post('/', authenticated, (req, res) => {
   const data = req.body
+  console.log('req.body', req.body)
   data.userId = req.user._id
   const record = new Record(data)
   record[req.body.category] = true
@@ -70,6 +72,7 @@ router.delete('/:id/delete', authenticated, (req, res) => {
     _id: req.params.id,
     userId: req.user._id,
   }, (err, record) => {
+    console.log('record', record)
     if (err) return console.error(err)
     record.remove(err => {
       if (err) return console.error(err)

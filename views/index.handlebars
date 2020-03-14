@@ -43,16 +43,14 @@
                 </div>
                 <div class="col-auto d-flex align-items-center">
                   <a href="/records/{{{this._id}}}/edit" class="btn btn-success">修改</a>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal">
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal{{{this._id}}}">
                     刪除
                   </button>
 
-                  {{!-- <form action="/records/{{{this._id}}}/delete?_method=DELETE" method="post" style="display:inline">
-                    <button type="submit" class="btn btn-danger">刪除</button>
-                  </form> --}}
+                  {{!-- 為什麼彈出model this指向就會出錯? --}}
 
-                  <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-                    aria-hidden="true">
+                  <div class="modal fade" id="Modal{{{this._id}}}" tabindex="-1" role="dialog"
+                    aria-labelledby="ModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -64,7 +62,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          確定要刪除嗎?
+                          確定要刪除{{this.name}}嗎?
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">放棄</button>

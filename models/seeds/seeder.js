@@ -33,7 +33,7 @@ db.once('open', () => {
     users.push(newUser)
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 15; i++) {
     const category = recordList.records[i].category
     recordList.records[i].userId = users[0]._id
     recordList.records[i][`${category}`] = true
