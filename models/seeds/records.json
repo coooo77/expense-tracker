@@ -3,52 +3,62 @@
     {
       "name": "沙發椅",
       "category": "home",
-      "amount": 10000
+      "amount": 10000,
+      "date": "2020-03-10"
     },
     {
       "name": "機車檢修",
       "category": "transport",
-      "amount": 1000
+      "amount": 1000,
+      "date": "2020-03-10"
     },
     {
       "name": "惡靈古堡3重製板",
       "category": "entertain",
-      "amount": 1800
+      "amount": 1800,
+      "date": "2020-03-10"
     },
     {
       "name": "蟹堡王美味蟹堡",
       "category": "food",
-      "amount": 300
+      "amount": 300,
+      "date": "2020-03-10"
     },
     {
       "name": "牙科檢查",
       "category": "other",
-      "amount": 200
+      "amount": 200,
+      "date": "2020-03-10"
     },
     {
       "name": "掃地機器人",
       "category": "home",
-      "amount": 9090
+      "amount": 9090,
+      "date": "2020-03-13"
     },
     {
       "name": "悠遊卡儲值",
       "category": "transport",
-      "amount": 1000
+      "amount": 1000,
+      "date": "2020-03-13"
     },
     {
       "name": "太空戰士7重製板",
       "category": "entertain",
-      "amount": 2000
+      "amount": 2000,
+      "date": "2020-03-13"
     },
     {
       "name": "晚餐聚會",
       "category": "food",
-      "amount": 360
+      "amount": 360,
+      "date": "2020-03-13"
     },
     {
       "name": "孝親費",
       "category": "other",
-      "amount": 20000
+      "amount": 20000,
+      "date": "2020-03-13"
     },
     {
       "name": "大門維修",
