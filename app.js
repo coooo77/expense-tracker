@@ -11,7 +11,7 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const port = 3000 // = process.env
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/expense_tracker', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/expense_tracker', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -55,6 +55,6 @@ app.use('/auth', require('./routes/auths'))
 app.use('/users', require('./routes/user'))
 app.use('/records', require('./routes/record'))
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`App is running on http://localhost:${port}`)
 })

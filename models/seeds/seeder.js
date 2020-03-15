@@ -5,7 +5,7 @@ const recordList = require('./records')
 const userList = require('./users')
 const bcrypt = require('bcryptjs')
 
-mongoose.connect('mongodb://localhost/expense_tracker', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/expense_tracker', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
