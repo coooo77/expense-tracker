@@ -2,6 +2,7 @@
 
 ## 專案說明 (Project Title)：
 以Node.js與Express建立的帳本記錄網站，以清單方式呈現，配合mongoose與mongoDB中資料互動。
+[線上版本網址](https://whispering-lake-04398.herokuapp.com/users/login)
 ![image](https://i.imgur.com/mGbypx9.png)
 
 ## 環境建置與需求 (prerequisites)：
@@ -59,11 +60,11 @@ npm run dev
 ## 功能描述 (features)：
 ### 清單功能
 * 使用者可以新增一筆消費紀錄。
-* 使用者可以瀏覽全部所有紀錄。
 * 使用者可以修改一筆消費紀錄。
 * 使用者可以刪除一筆消費紀錄。
-* 使用者可以設定消費紀錄排序。
-* 使用者可以篩選特定消費紀錄。
+* 使用者可以瀏覽全部所有紀錄，並能看到所有消費的總金額。
+* 使用者可以可以根據支出「類別」篩選支出；總金額的計算只會包括被篩選出來的支出總和
+* 使用者可以以金額大小、消費時間來排序消費紀錄
 
 ### 登入功能
 * 使用者登出、註冊失敗、或登入失敗時會給予訊息提示
@@ -74,3 +75,5 @@ npm run dev
 |Name      |Email               |Password       |
 |:--------:|:------------------:|:-------------:|
 |使用者01   |user1@example.com   |12345678       |
+
+[線上版本網址](https://whispering-lake-04398.herokuapp.com/users/login)
