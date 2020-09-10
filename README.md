@@ -1,4 +1,4 @@
-# 餐廳清單(配合CRUD功能，並符合RESTful設計)
+# 帳本記錄網站(配合CRUD功能，並符合RESTful設計)
 
 ## 專案說明 (Project Title)：
 以Node.js與Express建立的帳本記錄網站，以清單方式呈現，配合mongoose與mongoDB中資料互動。
