@@ -2,7 +2,7 @@
 
 ## 專案說明 (Project Title)：
 以Node.js與Express建立的帳本記錄網站，以清單方式呈現，配合mongoose與mongoDB中資料互動。
-[線上版本網址](https://whispering-lake-04398.herokuapp.com/users/login)
+(線上版本請參照 功能描述 中的 測試用帳號)
 ![image](https://i.imgur.com/mGbypx9.png)
 
 ## 環境建置與需求 (prerequisites)：
